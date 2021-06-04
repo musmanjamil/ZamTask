@@ -32,14 +32,14 @@ export const login = (email, password) => async (dispatch) => {
 // Register
 export const register = (userData) => async (dispatch) => {
     try {
-        console.log(userData);
+        
         dispatch({
             type: 'REGISTRATION_REQUEST',
         })
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                'Content-Type': 'application/json',
             },
         }
 

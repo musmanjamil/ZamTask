@@ -7,13 +7,16 @@ import { register, clearErrors } from '../actions/userActions';
 
 const Register = ({ history }) => {
     const alert = useAlert();
-    const [user, setUser] = useState({
-        name: '',
-        email: '',
-        password: '',
-    });
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+    // const [user, setUser] = useState({
+    //     name: '',
+    //     email: '',
+    //     password: '',
+    // });
 
-    const { name, email, password } = user;
+    // const { name, email, password } = user;
 
     const dispatch = useDispatch()
 
@@ -33,19 +36,19 @@ const Register = ({ history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-
-        const formData = new FormData();
-        formData.set('name', name);
-        formData.set('email', email);
-        formData.set('password', password);
-        console.log(formData);
-        dispatch(register(formData))
+            const userData={
+                name,
+                email,
+                password
+            }
+        
+        dispatch(register(userData))
     }
 
-    const onChange = e => {
+    // const onChange = e => {
         
-            setUser({ ...user, [e.target.name]: e.target.value });
-    };
+    //         setUser({ ...user, [e.target.name]: e.target.value });
+    // };
 
     return (
         <Fragment>
@@ -60,7 +63,7 @@ const Register = ({ history }) => {
                             <input type="name" id="name_field" className="form-control"
                                 name='name'
                                 value={name}
-                                onChange={onChange}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </div>
 
@@ -72,7 +75,7 @@ const Register = ({ history }) => {
                                 className="form-control"
                                 name='email'
                                 value={email}
-                                onChange={onChange}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
@@ -84,7 +87,7 @@ const Register = ({ history }) => {
                                 className="form-control"
                                 name='password'
                                 value={password}
-                                onChange={onChange}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
